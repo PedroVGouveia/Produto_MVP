@@ -16,17 +16,20 @@ import javax.swing.JOptionPane;
  * @author Pedro Vitor
  */
 public class InclusaoProdutoPresenter {
+
     private Produto produto;
     private produtoView view;
     private ProdutoCollection produtos;
+
     public InclusaoProdutoPresenter(ProdutoCollection produtos) {
         this.produtos = produtos;
         this.view = new produtoView();
         this.view.setVisible(false);
 
         configuraView();
-        view.setVisible(true);  
-     }
+        view.setVisible(true);
+    }
+
     private void configuraView() {
         this.view.getBtnInserir().addActionListener(new ActionListener() {
             @Override
@@ -45,16 +48,14 @@ public class InclusaoProdutoPresenter {
             }
         });
     }
-     
-        
-        
+
     private void salvar() throws Exception {
         String nome = view.getTxtNomeProduto().getText();
-        if (nome    == null || nome.isEmpty()) {
+        if (nome == null || nome.isEmpty()) {
             throw new Exception("Nome do produto é obrigatório");
         }
         double precoCusto = Double.parseDouble(view.getTxtPrecoCusto().getText());
-        if (precoCusto  <= 0) {
+        if (precoCusto <= 0) {
             throw new Exception("Preço de custo deve ser maior que zero");
         }
         double percentualLucro = Double.parseDouble(view.getTxtPercentualLucro().getText());
@@ -64,8 +65,6 @@ public class InclusaoProdutoPresenter {
 
         produto = new Produto(nome, precoCusto, percentualLucro);
 
-
-
         produtos.incluir(produto);
 
         JOptionPane.showMessageDialog(view, "Produto incluído com sucesso!");
@@ -74,9 +73,5 @@ public class InclusaoProdutoPresenter {
     private void cancelar() {
         view.dispose();
     }
-        
+
 }
-
-        
-
-    

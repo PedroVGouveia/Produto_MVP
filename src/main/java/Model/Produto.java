@@ -9,12 +9,11 @@ package Model;
  * @author Pedro Vitor
  */
 public class Produto {
+
     private String nome;
     private double precoCusto;
     private double percentualLucro;
     private double precoVenda;
-
-
 
     public Produto(String nome, double precoCusto, double percentualLucro) throws Exception {
         this.nome = nome;
@@ -22,8 +21,8 @@ public class Produto {
         this.percentualLucro = percentualLucro;
         this.precoVenda = Produto.calcularPrecoVenda(precoCusto, percentualLucro);
     }
-    
-    public static double calcularPrecoVenda(double precoCusto,double percentualLucro ) throws Exception {
+
+    public static double calcularPrecoVenda(double precoCusto, double percentualLucro) throws Exception {
         double precoVenda = precoCusto + (precoCusto * percentualLucro / 100);
         if (precoVenda <= 0) {
             throw new Exception("Preço de venda deve ser maior que zero");
@@ -34,16 +33,17 @@ public class Produto {
     public String getNome() {
         return nome;
     }
+
     public double getPrecoCusto() {
         return precoCusto;
     }
+
     public double getPercentualLucro() {
         return percentualLucro;
     }
-        public double getPrecoVenda() {
+
+    public double getPrecoVenda() {
         return precoVenda;
     }
 
-
-    
 }

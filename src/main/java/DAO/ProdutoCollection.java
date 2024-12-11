@@ -14,6 +14,7 @@ import java.util.Optional;
  * @author Pedro Vitor
  */
 public class ProdutoCollection {
+
     private ArrayList<Produto> produtos;
 
     public ProdutoCollection() {
@@ -26,6 +27,7 @@ public class ProdutoCollection {
         }
         produtos.add(produto);
     }
+
     public ArrayList<Produto> getProdutos() {
         return produtos;
     }
@@ -38,5 +40,5 @@ public class ProdutoCollection {
         }
         return Optional.empty();
     }
-    
+
 }

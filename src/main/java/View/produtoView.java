@@ -17,10 +17,12 @@ import javax.swing.JTextField;
  * @author Pedro Vitor
  */
 public class produtoView extends javax.swing.JFrame {
-        double precoVenda;
-        public produtoView() {
+
+    double precoVenda;
+
+    public produtoView() {
         initComponents();
-        
+
         txtPrecoCusto.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 calcularPrecoVenda();
@@ -31,31 +33,36 @@ public class produtoView extends javax.swing.JFrame {
                 calcularPrecoVenda();
             }
         });
-        
-        }
 
-    
+    }
+
     public JTextField getTxtNomeProduto() {
         return txtNomeProduto;
     }
+
     public JTextField getTxtPrecoCusto() {
         return txtPrecoCusto;
     }
+
     public JTextField getTxtPercentualLucro() {
         return txtPercentualLucro;
     }
+
     public JTextField getTxtPrecoVenda() {
         return txtPrecoVenda;
     }
+
     public JButton getBtnInserir() {
         return btnInserir;
     }
+
     public JButton getBtnCancelar() {
         return btnCancelar;
     }
+
     private void calcularPrecoVenda() {
         try {
-            
+
             double precoCusto = Double.parseDouble(txtPrecoCusto.getText());
             double percentualLucro = Double.parseDouble(txtPercentualLucro.getText());
 
@@ -66,13 +73,10 @@ public class produtoView extends javax.swing.JFrame {
         } catch (NumberFormatException e) {
 
             txtPrecoVenda.setText("Valor inválido");
-        }   catch (Exception ex) {
-                txtPrecoVenda.setText("Valor inválido");
-            }
+        } catch (Exception ex) {
+            txtPrecoVenda.setText("Valor inválido");
+        }
     }
-    
-    
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -273,11 +277,11 @@ public class produtoView extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public  void main(String args[]) {
+    public void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new produtoView().setVisible(true);
-            }        
+            }
 
         });
     }
