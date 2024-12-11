@@ -7,6 +7,7 @@ package DAO;
 import Model.Produto;
 import java.awt.List;
 import java.util.ArrayList;
+import java.util.Observer;
 import java.util.Optional;
 
 /**
@@ -16,16 +17,38 @@ import java.util.Optional;
 public class ProdutoCollection {
 
     private ArrayList<Produto> produtos;
+    private ArrayList<Observer> observers;
 
     public ProdutoCollection() {
         produtos = new ArrayList<>();
+        observers = new ArrayList<>();
     }
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+    private void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update();
+        }
+    }
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
 
     public void incluir(Produto produto) {
         if (produto == null) {
             throw new IllegalArgumentException("Informe um produto válido");
         }
         produtos.add(produto);
+        notifyObservers();
+    }
+    public void remover(Produto produto) {
+        if (produto == null) {
+            throw new IllegalArgumentException("Informe um produto válido");
+        }
+        produtos.remove(produto);
+        notifyObservers();
     }
 
     public ArrayList<Produto> getProdutos() {

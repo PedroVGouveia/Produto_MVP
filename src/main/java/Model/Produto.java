@@ -45,5 +45,9 @@ public class Produto {
     public double getPrecoVenda() {
         return precoVenda;
     }
+        @Override
+    public String toString() {
+        return "Nome do Produto: " + nome + ", Preço de Custo:  " + precoCusto + ", Preço Venda: " + precoVenda;
+    }
 
 }
