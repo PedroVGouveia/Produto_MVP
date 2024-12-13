@@ -6,6 +6,7 @@ package View;
 
 import DAO.ProdutoCollection;
 import Model.ProdutoObserver;
+import Presenter.InclusaoProdutoPresenter;
 import javax.swing.JLabel;
 
 /**
@@ -15,24 +16,20 @@ import javax.swing.JLabel;
 public class telaPrincipal extends javax.swing.JFrame implements ProdutoObserver {
     
     private ProdutoCollection produtoCollection;
-    private JLabel statusLabel;
 
     public telaPrincipal(ProdutoCollection produtoCollection) {
         this.produtoCollection = produtoCollection;
         initComponents();
         produtoCollection.addObserver(this);
         update();
-        
         mnAdicionarProduto.addActionListener(e -> onProdutoView());
-        mnListarProduto.addActionListener(e -> onOListarProdutoView());
-        
-        
+        mnListarProduto.addActionListener(e -> onListarProdutoView());
     }
     
     private void onProdutoView() {
-        new produtoView().setVisible(true); 
+        new InclusaoProdutoPresenter(produtoCollection); 
     }
-        private void onOListarProdutoView() {
+    private void onListarProdutoView() {
         new ListarProdutoView(produtoCollection).setVisible(true); 
     }
 
@@ -58,9 +55,19 @@ public class telaPrincipal extends javax.swing.JFrame implements ProdutoObserver
         jMenu1.setText("Menu");
 
         mnAdicionarProduto.setText("Incluir Produto");
+        mnAdicionarProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnAdicionarProdutoMouseClicked(evt);
+            }
+        });
         jMenu1.add(mnAdicionarProduto);
 
         mnListarProduto.setText("Listar Produtos");
+        mnListarProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnListarProdutoMouseClicked(evt);
+            }
+        });
         jMenu1.add(mnListarProduto);
 
         jMenuBar1.add(jMenu1);
@@ -87,42 +94,50 @@ public class telaPrincipal extends javax.swing.JFrame implements ProdutoObserver
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void mnAdicionarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnAdicionarProdutoMouseClicked
+        onProdutoView();        
+    }//GEN-LAST:event_mnAdicionarProdutoMouseClicked
+
+    private void mnListarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnListarProdutoMouseClicked
+        onListarProdutoView();        
+    }//GEN-LAST:event_mnListarProdutoMouseClicked
+
     @Override
     public void update() {
-        statusLabel.setText("Total de Produtos: " + produtoCollection.getProdutos().size());
+        lblStatus.setText("Total de Produtos: " + produtoCollection.getProdutos().size());
     }
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(telaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(telaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(telaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(telaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ProdutoCollection produtoCollection = new ProdutoCollection();
-                new telaPrincipal(produtoCollection).setVisible(true);
-            }
-        });
-    }
+//     public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(telaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(telaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(telaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(telaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                ProdutoCollection produtoCollection = new ProdutoCollection();
+//                new telaPrincipal(produtoCollection).setVisible(true);
+//            }
+//        });
+//    } 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;

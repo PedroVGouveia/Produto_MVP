@@ -13,11 +13,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Incluir Produto"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mnAdicionarProdutoMouseClicked"/>
+              </Events>
             </Menu>
             <Menu class="javax.swing.JMenu" name="mnListarProduto">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Listar Produtos"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mnListarProdutoMouseClicked"/>
+              </Events>
             </Menu>
           </SubComponents>
         </Menu>

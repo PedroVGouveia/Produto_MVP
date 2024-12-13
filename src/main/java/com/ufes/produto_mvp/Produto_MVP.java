@@ -6,6 +6,7 @@ package com.ufes.produto_mvp;
 
 import DAO.ProdutoCollection;
 import Presenter.InclusaoProdutoPresenter;
+import Presenter.telaPrincipalPresenter;
 
 /**
  *
@@ -15,6 +16,6 @@ public class Produto_MVP {
 
     public static void main(String[] args) {
         ProdutoCollection produtos = new ProdutoCollection();
-        new InclusaoProdutoPresenter(produtos);
+        new telaPrincipalPresenter(produtos);
     }
 }

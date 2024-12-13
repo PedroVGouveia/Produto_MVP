@@ -5,9 +5,8 @@
 package DAO;
 
 import Model.Produto;
-import java.awt.List;
+import Model.ProdutoObserver;
 import java.util.ArrayList;
-import java.util.Observer;
 import java.util.Optional;
 
 /**
@@ -17,21 +16,21 @@ import java.util.Optional;
 public class ProdutoCollection {
 
     private ArrayList<Produto> produtos;
-    private ArrayList<Observer> observers;
+    private ArrayList<ProdutoObserver> observers;
 
     public ProdutoCollection() {
         produtos = new ArrayList<>();
         observers = new ArrayList<>();
     }
-    public void addObserver(Observer observer) {
+    public void addObserver(ProdutoObserver observer) {
         observers.add(observer);
     }
     private void notifyObservers() {
-        for (Observer observer : observers) {
+        for (ProdutoObserver observer : observers) {
             observer.update();
         }
     }
-    public void removeObserver(Observer observer) {
+    public void removeObserver(ProdutoObserver observer) {
         observers.remove(observer);
     }
 

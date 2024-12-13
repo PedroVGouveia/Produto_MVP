@@ -6,7 +6,7 @@ package View;
 
 import DAO.ProdutoCollection;
 import Model.Produto;
-import java.util.Observer;
+import Model.ProdutoObserver;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Pedro Vitor
  */
-public class ListarProdutoView extends javax.swing.JFrame implements Observer {
+public class ListarProdutoView extends javax.swing.JFrame implements ProdutoObserver {
     private ProdutoCollection produtoCollection;
 
     public ListarProdutoView(ProdutoCollection produtoCollection) {
@@ -39,10 +39,12 @@ public class ListarProdutoView extends javax.swing.JFrame implements Observer {
     public void update() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Nome");
+        model.addColumn("Preço Custo");
+        model.addColumn("Percentual de Lucro");
         model.addColumn("Preço de Venda");
 
         for (Produto produto : produtoCollection.getProdutos()) {
-            model.addRow(new Object[]{produto.getNome(), produto.getPrecoVenda()});
+            model.addRow(new Object[]{produto.getNome(),produto.getPrecoCusto(),produto.getPercentualLucro(), produto.getPrecoVenda()});
         }
         tblProdutos.setModel(model);
     }
@@ -110,7 +112,7 @@ public class ListarProdutoView extends javax.swing.JFrame implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-        
+        onRemoverProduto();
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     /**
