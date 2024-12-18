@@ -22,8 +22,6 @@ public class ListarProdutoPresenter {
         this.produtos = produtos;
         this.view = new ListarProdutoView(produtos);
         this.view.setVisible(false);
-
-        
         view.setVisible(true);
     }
     
